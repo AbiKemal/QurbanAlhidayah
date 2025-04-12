@@ -1,1 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Bendahara</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>Verifikasi Bendahara</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="input.html">Input Data</a> |
+            <a href="view.html">View Data</a>
+        </nav>
+    </header>
 
+    <main>
+        <div class="table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>NAMA</th>
+                        <th>BULAN</th>
+                        <th>JUMLAH</th>
+                        <th>TGL INPUT</th>
+                        <th>BENDAHARA</th>
+                        <th>BUKTI TRANSFER</th>
+                        <th>KETERANGAN</th>
+                        <th>AKSI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data akan diisi oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>Sistem Manajemen Data © 2023</p>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/google-sheets.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const data = await fetchData('getBendaharaData');
+            renderBendaharaTable(data);
+            
+            // Auto refresh setiap 30 detik
+            setInterval(async () => {
+                const newData = await fetchData('getBendaharaData');
+                renderBendaharaTable(newData);
+            }, 30000);
+        });
+
+        function renderBendaharaTable(data) {
+            const tbody = document.querySelector('#dataTable tbody');
+            tbody.innerHTML = '';
+            
+            if (!data || data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8">Tidak ada data yang perlu diverifikasi</td></tr>';
+                return;
+            }
+            
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${row.nama || '-'}</td>
+                    <td>${row.bulan || '-'}</td>
+                    <td>${row.jumlah || '0'}</td>
+                    <td>${row.tglInput || '-'}</td>
+                    <td>${row.bendahara || 'NO'}</td>
+                    <td>${row.buktiTransfer || '-'}</td>
+                    <td>${row.keterangan || '-'}</td>
+                    <td class="action-buttons">
+                        <button class="btn-setuju" data-id="${row.id}">Setuju</button>
+                        <button class="btn-tolak" data-id="${row.id}">Tolak</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Tambahkan event listener untuk tombol aksi
+            document.querySelectorAll('.btn-setuju').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const id = this.getAttribute('data-id');
+                    await postData('approveData', { id });
+                    const newData = await fetchData('getBendaharaData');
+                    renderBendaharaTable(newData);
+                });
+            });
+
+            document.querySelectorAll('.btn-tolak').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    if (confirm('Apakah Anda yakin ingin menolak data ini?')) {
+                        const id = this.getAttribute('data-id');
+                        await postData('rejectData', { id });
+                        const newData = await fetchData('getBendaharaData');
+                        renderBendaharaTable(newData);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
