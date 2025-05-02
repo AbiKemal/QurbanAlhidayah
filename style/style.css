@@ -1,4 +1,3 @@
-/* Base Styles */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -22,7 +21,6 @@ h1, h2 {
   color: #333;
 }
 
-/* Navigation */
 nav {
   text-align: center;
   margin-bottom: 20px;
@@ -39,7 +37,6 @@ nav a:hover {
   color: #0056b3;
 }
 
-/* Participant List */
 #peserta_list {
   margin-top: 20px;
   font-size: 16px;
@@ -63,7 +60,6 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* Responsive Design */
 @media screen and (max-width: 600px) {
   body {
     padding: 10px;
