@@ -1,18 +1,16 @@
-import config from './config.js';
-
-google.charts.load('current', {'packages':['table']});
-google.charts.setOnLoadCallback(drawTable);
-
 let globalTable, globalData;
 
+google.charts.load('current', { packages: ['table'] });
+google.charts.setOnLoadCallback(drawTable);
+
 function drawTable() {
-  const sheetName = config.sheets.DATABASE.sheet_name;
-  const gid = config.sheets.DATABASE.gid;
+  const sheetId = '1aNWfGYIqARaSmDXl0eqJ5Sy6htOgBgMTIZC1SlZA0vA';
+  const sheetName = 'DATABASE';
   const queryString = encodeURIComponent("SELECT B, C, D, E, G, H");
-  const dataSourceUrl = config.getGvizUrl(gid) + `&tq=${queryString}`;
+  const dataSourceUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${sheetName}&headers=1&tq=${queryString}`;
 
   const query = new google.visualization.Query(dataSourceUrl);
-  query.send(function(response) {
+  query.send(function (response) {
     if (response.isError()) {
       document.getElementById("table_div").innerHTML =
         'Gagal memuat data: ' + response.getMessage();
@@ -55,16 +53,17 @@ function drawTable() {
       allowHtml: true
     });
 
-    document.getElementById('total_div').innerHTML = `TOTAL TABUNGAN: Rp ${totalJumlah.toLocaleString()}`;
+    document.getElementById('total_div').innerHTML =
+      `TOTAL TABUNGAN: Rp ${totalJumlah.toLocaleString()}`;
   });
 }
 
-window.filterData = function() {
+function filterData() {
   const input = document.getElementById('filterNama').value.toLowerCase();
 
   const view = new google.visualization.DataView(globalData);
   view.setRows(globalData.getFilteredRows([{
-    column: 1, // kolom NAMA
+    column: 1,
     test: function (value) {
       return value.toLowerCase().includes(input);
     }
@@ -75,9 +74,9 @@ window.filterData = function() {
     width: '100%',
     allowHtml: true
   });
-};
+}
 
-window.exportToExcel = function() {
+function exportToExcel() {
   const table = document.querySelector('#table_div table');
   if (!table) {
     alert("Tabel belum tersedia.");
@@ -117,4 +116,4 @@ window.exportToExcel = function() {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-};
+}
