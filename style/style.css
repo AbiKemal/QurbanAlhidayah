@@ -19,6 +19,22 @@ body {
 }
 
 /* Header */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.info div {
+  flex: 1 1 45%;
+}
 .main-header-wrapper {
   background-color: #006400; /* Dark green */
   padding: 10px 0;
@@ -42,7 +58,16 @@ body {
   font-size: 20px;
   font-weight: 600;
 }
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
 
+.total-tabungan {
+  text-align: right;
+  font-weight: bold;
+  padding-top: 10px;
+}
 /* Navigation (footer menu) */
 .main-nav-wrapper {
   background-color: #90EE90; /* Light green */
@@ -147,8 +172,12 @@ body {
     text-align: center;
   }
 
-  .info {
+.info {
     flex-direction: column;
     text-align: left;
   }
+  .total-tabungan {
+    text-align: left;
+  }
+  
 }
