@@ -23,6 +23,12 @@
   background-color: #a5d6a7; /* Hijau muda */
   text-align: center;
   padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 }
 
 .main-nav a {
@@ -40,7 +46,7 @@
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
-  padding: 0;
+  padding-bottom: 60px; /* Tambah padding agar konten tidak tertutup menu */
   background: #f9f9f9;
   color: #333;
 }
