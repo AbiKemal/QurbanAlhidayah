@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kartu Tabungan Qurban</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .info {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .info div {
+      flex: 1 1 45%;
+    }
+    .table-container {
+      overflow-x: auto;
+      margin-bottom: 15px;
+    }
+    .total-tabungan {
+      text-align: right;
+      font-weight: bold;
+      padding-top: 10px;
+    }
+    @media (max-width: 600px) {
+      .info {
+        flex-direction: column;
+        text-align: left;
+      }
+      .total-tabungan {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="judul"></div>
+    <div class="table-container">
+      <div id="table_div">Memuat data...</div>
+    </div>
+    <div id="total_tabungan" class="total-tabungan"></div>
+  </div>
+
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['table']});
+    google.charts.setOnLoadCallback(drawTable);
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function drawTable() {
+      const nama = getQueryParam("nama");
+      if (!nama) {
+        document.getElementById("table_div").innerHTML = "Nama peserta tidak ditemukan di URL.";
+        return;
+      }
+
+      document.getElementById("judul").innerHTML = `
+        <div class="header">
+          <h2>KARTU TABUNGAN QURBAN TAHUN 2026</h2>
+          <p>Kp. Pasar Senen Desa Ciasihan Kec. Pamijahan</p>
+        </div>
+        <div class="info">
+          <div><strong>NAMA:</strong> ${nama}</div>
+          <div style="text-align:right;">
+            <strong>Jumlah Dana Qurban</strong><br>
+            RP 3.000.000
+          </div>
+        </div>
+      `;
+
+      const sheetId = '1aNWfGYIqARaSmDXl0eqJ5Sy6htOgBgMTIZC1SlZA0vA';
+      const sheetName = 'DATABASE';
+      const queryString = encodeURIComponent(`SELECT C, D, E WHERE B = '${nama}'`);
+      const dataSourceUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${sheetName}&headers=1&tq=${queryString}`;
+
+      const query = new google.visualization.Query(dataSourceUrl);
+      query.send(function(response) {
+        if (response.isError()) {
+          document.getElementById("table_div").innerHTML = 'Gagal memuat data: ' + response.getMessage();
+          return;
+        }
+
+        const rawData = response.getDataTable();
+        const numRows = rawData.getNumberOfRows();
+
+        // Buat tabel baru dengan kolom: NO, BULAN, JUMLAH, TGL INPUT
+        const formattedData = new google.visualization.DataTable();
+        formattedData.addColumn('number', 'NO');
+        formattedData.addColumn('string', 'BULAN');      // C
+        formattedData.addColumn('number', 'JUMLAH');     // D
+        formattedData.addColumn('string', 'TGL INPUT');  // E
+
+        let total = 0;
+        for (let i = 0; i < numRows; i++) {
+          const bulan = rawData.getValue(i, 0);
+          const jumlah = rawData.getValue(i, 1);
+          const tgl = rawData.getFormattedValue(i, 2);
+          if (typeof jumlah === 'number') {
+            total += jumlah;
+          }
+          formattedData.addRow([i + 1, bulan, jumlah, tgl]);
+        }
+
+        const table = new google.visualization.Table(document.getElementById('table_div'));
+        table.draw(formattedData, { showRowNumber: false, width: '100%', height: 'auto' });
+
+        document.getElementById("total_tabungan").innerHTML =
+          `TOTAL TABUNGAN: Rp ${total.toLocaleString('id-ID', { minimumFractionDigits: 2 })}`;
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda - Qurban</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['table']});
+    google.charts.setOnLoadCallback(loadPesertaList);
+
+    function loadPesertaList() {
+      var sheetId = '1aNWfGYIqARaSmDXl0eqJ5Sy6htOgBgMTIZC1SlZA0vA';
+      var sheetName = 'PESERTA_QURBAN';
+      var queryString = encodeURIComponent("SELECT A, B");
+
+      var dataSourceUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${sheetName}&headers=1&tq=${queryString}`;
+
+      var query = new google.visualization.Query(dataSourceUrl);
+      query.send(function(response) {
+        if (response.isError()) {
+          document.getElementById("peserta_list").innerHTML = "Gagal memuat data peserta.";
+          return;
+        }
+
+        var data = response.getDataTable();
+        var html = '<ul>';
+        for (var i = 0; i < data.getNumberOfRows(); i++) {
+          var nama = data.getValue(i, 1); // Kolom B
+          html += `<li><a href="view.html?nama=${encodeURIComponent(nama)}">${data.getValue(i, 0)} - ${nama}</a></li>`;
+        }
+        html += '</ul>';
+        document.getElementById("peserta_list").innerHTML = html;
+      });
+    }
+  </script>
+  <style>
+    /* Reset styling untuk tampilan */
+    /*
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    } 
+  */
+      body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+      .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #0056b3;
+    }
+
+    #peserta_list {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    #peserta_list ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #peserta_list li {
+      margin: 10px 0;
+    }
+
+    #peserta_list a {
+      text-decoration: none;
+      color: #007BFF;
+    }
+
+    #peserta_list a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      h1, h2 {
+        font-size: 24px;
+      }
+
+      #peserta_list ul {
+        padding-left: 20px;
+      }
+
+      #peserta_list li {
+        font-size: 14px;
+      }
+
+      nav {
+        font-size: 14px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <h1>Selamat Datang di Halaman Qurban</h1>
+  
+  <nav>
+    <a href="index.html">Beranda</a> |
+    <a href="master.html">Master Data</a>
+  </nav>
+
+  <div>
+  <h2>Daftar Peserta Qurban</h2>
+  <div id="peserta_list">Memuat data...</div>
+    </div>
+  </div>
+</body>
+</html>
