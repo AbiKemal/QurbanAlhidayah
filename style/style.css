@@ -12,9 +12,12 @@
 /* HEADER */
 .main-header-wrapper {
   background-color: #2e7d32; /* Hijau tua */
+  width: 100%;
 }
 
 .main-header {
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   padding: 10px 20px;
@@ -38,6 +41,8 @@
 }
 
 .main-nav {
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -49,7 +54,6 @@
   color: #2e7d32;
   font-weight: bold;
 }
-
 .main-nav a:hover {
   color: #1b5e20;
 }
