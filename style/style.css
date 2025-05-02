@@ -1,56 +1,4 @@
-/* Header */
-.main-header {
-  background-color: #2e7d32; /* Hijau tua */
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.main-header .logo {
-  height: 50px;
-}
-
-.main-header h1 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-/* Navigasi */
-.main-nav {
-  background-color: #a5d6a7; /* Hijau muda */
-  text-align: center;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-}
-
-.main-nav a {
-  margin: 0 15px;
-  color: #1b5e20;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.main-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Konten */
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding-bottom: 60px; /* Tambah padding agar konten tidak tertutup menu */
-  background: #f9f9f9;
-  color: #333;
-}
-
+/* Kontainer utama */
 .container {
   max-width: 900px;
   margin: auto;
@@ -61,50 +9,71 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-h2 {
-  text-align: center;
+/* HEADER */
+.main-header-wrapper {
+  background-color: #2e7d32; /* Hijau tua */
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+}
+
+.main-header .logo {
+  height: 40px;
+  margin-right: 15px;
+}
+
+/* NAVIGASI BAWAH */
+.main-nav-wrapper {
+  background-color: #a5d6a7; /* Hijau muda */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.main-nav a:hover {
+  color: #1b5e20;
+}
+
+/* Pastikan konten tidak tertutup nav */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding-bottom: 70px; /* Untuk menghindari tertutup nav */
+  background: #f9f9f9;
   color: #333;
 }
 
-#peserta_list {
-  margin-top: 20px;
-  font-size: 16px;
-}
-
-#peserta_list ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-#peserta_list li {
-  margin: 10px 0;
-}
-
-#peserta_list a {
-  text-decoration: none;
-  color: #007BFF;
-}
-
-#peserta_list a:hover {
-  text-decoration: underline;
-}
-
-/* Responsif */
+/* RESPONSIF */
 @media screen and (max-width: 600px) {
-  .main-header h1 {
-    font-size: 18px;
-  }
-
-  .main-nav a {
-    font-size: 14px;
-    margin: 0 8px;
-  }
-
   .container {
-    padding: 10px;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 0;
   }
 
-  #peserta_list li {
-    font-size: 14px;
+  .main-header, .main-nav {
+    max-width: 100%;
+    padding: 10px;
   }
 }
