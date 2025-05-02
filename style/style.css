@@ -1,3 +1,42 @@
+/* Header */
+.main-header {
+  background-color: #2e7d32; /* Hijau tua */
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.main-header .logo {
+  height: 50px;
+}
+
+.main-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Navigasi */
+.main-nav {
+  background-color: #a5d6a7; /* Hijau muda */
+  text-align: center;
+  padding: 10px 0;
+}
+
+.main-nav a {
+  margin: 0 15px;
+  color: #1b5e20;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Konten */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -16,25 +55,9 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-h1, h2 {
+h2 {
   text-align: center;
   color: #333;
-}
-
-nav {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #007BFF;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #0056b3;
 }
 
 #peserta_list {
@@ -60,28 +83,22 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* Responsif */
 @media screen and (max-width: 600px) {
-  body {
+  .main-header h1 {
+    font-size: 18px;
+  }
+
+  .main-nav a {
+    font-size: 14px;
+    margin: 0 8px;
+  }
+
+  .container {
     padding: 10px;
-  }
-
-  h1, h2 {
-    font-size: 24px;
-  }
-
-  #peserta_list ul {
-    padding-left: 20px;
   }
 
   #peserta_list li {
     font-size: 14px;
-  }
-
-  nav {
-    font-size: 14px;
-  }
-
-  nav a {
-    margin: 0 8px;
   }
 }
