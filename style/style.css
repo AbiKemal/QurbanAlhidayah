@@ -11,7 +11,7 @@
 
 /* HEADER */
 .main-header-wrapper {
-  background-color: #2e7d32; /* Hijau tua */
+  /* background-color: #2e7d32; /* Hijau tua */
   width: 100%;
 }
 
@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  background-color: #2e7d32;
   color: white;
 }
 
@@ -31,7 +32,7 @@
 
 /* NAVIGASI BAWAH */
 .main-nav-wrapper {
-  background-color: #a5d6a7; /* Hijau muda */
+  /*background-color: #a5d6a7; /* Hijau muda */
   position: fixed;
   bottom: 0;
   left: 0;
@@ -41,6 +42,7 @@
 }
 
 .main-nav {
+  background-color: #a5d6a7;
   max-width: 900px;
   margin: 0 auto;
   display: flex;
