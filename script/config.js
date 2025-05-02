@@ -1,40 +1,35 @@
-const BASE_GSHEET_EXPORT = "https://docs.google.com/spreadsheets/d/e/";
-const BASE_GSHEET_VIEW = "https://docs.google.com/spreadsheets/d/";
-const COMMON_EXPORT_SUFFIX = "&single=true&output=csv";
+const gsheet = "1aNWfGYIqARaSmDXl0eqJ5Sy6htOgBgMTIZC1SlZA0vA";
 
-const config = {
-  SHEETS: {
-    DATABASE: {
-      sheet_name: "DATABASE",
-      gid: "2142822523",
-      export_id: "2PACX-1vRUl5hfyzjnnT1H-bN9Q5U5s4OXqnbWN0mDflynJnyA76bp8bMOYEMDvwnBY1UqwDJ8_P10jfOM0uOm"
-    },
-    PESERTA_QURBAN: {
-      sheet_name: "PESERTA_QURBAN",
-      gid: "2033279411",
-      export_id: "2PACX-1vRUl5hfyzjnnT1H-bN9Q5U5s4OXqnbWN0mDflynJnyA76bp8bMOYEMDvwnBY1UqwDJ8_P10jfOM0uOm",
-      default_query: "SELECT A, B"
-    },
-    LIST_BULAN: {
-      sheet_name: "LIST_BULAN",
-      gid: "2028680504",
-      export_id: "2PACX-1vRUl5hfyzjnnT1H-bN9Q5U5s4OXqnbWN0mDflynJnyA76bp8bMOYEMDvwnBY1UqwDJ8_P10jfOM0uOm"
-    },
-    Admin: {
-      sheet_name: "list_Admin",
-      gid: "400129141",
-      export_id: "2PACX-1vRUl5hfyzjnnT1H-bN9Q5U5s4OXqnbWN0mDflynJnyA76bp8bMOYEMDvwnBY1UqwDJ8_P10jfOM0uOm"
-    }
+const rawSheetsConfig = {
+  DATABASE: {
+    sheet_name: "DATABASE",
+    id: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUl5hfyzjnnT1H-bN9Q5U5s4OXqnbWN0mDflynJnyA76bp8bMOYEMDvwnBY1UqwDJ8_P10jfOM0uOm/pub?gid=2142822523&single=true&output=csv"
   },
-  API: {
-    BASE_URL: BASE_GSHEET_VIEW,
-    GVIZ_ENDPOINT: "/gviz/tq"
+  PESERTA_QURBAN: {
+    sheet_name: "PESERTA_QURBAN",
+    id: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUl5hfyzjnnT1H-bN9Q5U5s4OXqnbWN0mDflynJnyA76bp8bMOYEMDvwnBY1UqwDJ8_P10jfOM0uOm/pub?gid=2033279411&single=true&output=csv"
   },
-  getExportUrl(sheet) {
-    const s = config.SHEETS[sheet];
-    return `${BASE_GSHEET_EXPORT}${s.export_id}/pub?gid=${s.gid}${COMMON_EXPORT_SUFFIX}`;
+  LIST_BULAN: {
+    sheet_name: "LIST_BULAN",
+    id: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUl5hfyzjnnT1H-bN9Q5U5s4OXqnbWN0mDflynJnyA76bp8bMOYEMDvwnBY1UqwDJ8_P10jfOM0uOm/pub?gid=2028680504&single=true&output=csv"
+  },
+  Admin: {
+    sheet_name: "list_Admin",
+    id: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUl5hfyzjnnT1H-bN9Q5U5s4OXqnbWN0mDflynJnyA76bp8bMOYEMDvwnBY1UqwDJ8_P10jfOM0uOm/pub?gid=400129141&single=true&output=csv"
   }
 };
 
-// GSheet ID khusus untuk akses langsung
-const gsheet = "1aNWfGYIqARaSmDXl0eqJ5Sy6htOgBgMTIZC1SlZA0vA";
+// Fungsi untuk ekstrak GID dari URL
+function extractGidFromUrl(url) {
+  const match = url.match(/gid=(\d+)/);
+  return match ? match[1] : null;
+}
+
+// Konversi ke config dengan gid terpisah
+const sheetsConfig = {};
+for (const key in rawSheetsConfig) {
+  sheetsConfig[key] = {
+    ...rawSheetsConfig[key],
+    gid: extractGidFromUrl(rawSheetsConfig[key].id)
+  };
+}
