@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qurban Alhidayah - Beranda</title>
+  <title>Beranda - Qurban</title>
+
+  <!-- Google Charts -->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style/style.css">
+
+  <!-- Global & Config -->
+  <script src="script/global.js"></script>
+  <script src="config.json" type="application/json" id="config-data"></script>
+
+  <!-- Main Script -->
+  <script src="script/javascript.js" defer></script>
 </head>
 <body>
-  <header>
-    <img src="images/logo.png" alt="Logo Alhidayah" class="logo">
-    <h1>Qurban Alhidayah</h1>
-  </header>
-  <main>
-    <section class="intro">
-      <p>Selamat datang di sistem pendataan Qurban Alhidayah. Silakan pilih menu di bawah untuk melanjutkan:</p>
-      <div class="menu-buttons">
-        <a href="master.html" class="button">Data Master</a>
-        <a href="view.html" class="button">Lihat Peserta</a>
-        <a href="viewR.html" class="button">Rekap Qurban</a>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 Qurban Alhidayah</p>
-  </footer>
-  <script src="script/global.js"></script>
-  <script src="script/javascript.js"></script>
+  <div class="container">
+    <h1>Selamat Datang di Halaman Qurban</h1>
+
+    <nav>
+      <a href="index.html">Beranda</a> |
+      <a href="master.html">Master Data</a>
+    </nav>
+
+    <div>
+      <h2>Daftar Peserta Qurban</h2>
+      <div id="peserta_list">Memuat data...</div>
+    </div>
+  </div>
 </body>
 </html>
