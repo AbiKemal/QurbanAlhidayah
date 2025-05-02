@@ -1,56 +1,73 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
+  background: #f9f9f9;
   color: #333;
 }
-
-header {
-  background-color: #e0f0e9;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.logo {
-  width: 100px;
-  margin-bottom: 10px;
-}
-
-main {
-  padding: 1rem;
-  text-align: center;
-}
-
-.intro {
-  max-width: 600px;
+.container {
+  max-width: 900px;
   margin: auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  margin-top: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
-
-.menu-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #45a049;
-}
-
-footer {
+h1, h2 {
   text-align: center;
-  padding: 1rem;
-  background-color: #f0f0f0;
+  color: #333;
+}
+nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+nav a:hover {
+  color: #0056b3;
+}
+#peserta_list {
   margin-top: 20px;
+  font-size: 16px;
+}
+#peserta_list ul {
+  list-style-type: none;
+  padding: 0;
+}
+#peserta_list li {
+  margin: 10px 0;
+}
+#peserta_list a {
+  text-decoration: none;
+  color: #007BFF;
+}
+#peserta_list a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  h1, h2 {
+    font-size: 24px;
+  }
+  #peserta_list ul {
+    padding-left: 20px;
+  }
+  #peserta_list li {
+    font-size: 14px;
+  }
+  nav {
+    font-size: 14px;
+  }
+  nav a {
+    margin: 0 8px;
+  }
 }
