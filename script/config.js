@@ -19,13 +19,13 @@ const rawSheetsConfig = {
   }
 };
 
-// Fungsi untuk ekstrak GID dari URL
+// Ekstrak GID dari URL
 function extractGidFromUrl(url) {
   const match = url.match(/gid=(\d+)/);
   return match ? match[1] : null;
 }
 
-// Konversi ke config dengan gid terpisah
+// Buat konfigurasi akhir
 const sheetsConfig = {};
 for (const key in rawSheetsConfig) {
   sheetsConfig[key] = {
@@ -33,3 +33,22 @@ for (const key in rawSheetsConfig) {
     gid: extractGidFromUrl(rawSheetsConfig[key].id)
   };
 }
+
+// Utilitas URL
+function getCsvUrl(gid) {
+  return `https://docs.google.com/spreadsheets/d/e/${gsheet}/pub?gid=${gid}&single=true&output=csv`;
+}
+
+function getGvizUrl(gid) {
+  return `https://docs.google.com/spreadsheets/d/${gsheet}/gviz/tq?gid=${gid}`;
+}
+
+// Objek utama untuk diekspor
+const config = {
+  gsheet,
+  sheets: sheetsConfig,
+  getCsvUrl,
+  getGvizUrl
+};
+
+export default config;
