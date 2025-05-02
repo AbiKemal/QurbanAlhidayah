@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -5,6 +6,7 @@ body {
   background: #f9f9f9;
   color: #333;
 }
+
 .container {
   max-width: 900px;
   margin: auto;
@@ -14,38 +16,49 @@ body {
   margin-top: 30px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
+
 h1, h2 {
   text-align: center;
   color: #333;
 }
+
+/* Navigation */
 nav {
   text-align: center;
   margin-bottom: 20px;
 }
+
 nav a {
   margin: 0 10px;
   text-decoration: none;
   color: #007BFF;
   font-weight: bold;
 }
+
 nav a:hover {
   color: #0056b3;
 }
+
+/* Participant List */
 #peserta_list {
   margin-top: 20px;
   font-size: 16px;
 }
+
 #peserta_list ul {
   list-style-type: none;
   padding: 0;
 }
+
 #peserta_list li {
   margin: 10px 0;
 }
+
 #peserta_list a {
   text-decoration: none;
   color: #007BFF;
 }
+
 #peserta_list a:hover {
   text-decoration: underline;
 }
@@ -55,18 +68,23 @@ nav a:hover {
   body {
     padding: 10px;
   }
+
   h1, h2 {
     font-size: 24px;
   }
+
   #peserta_list ul {
     padding-left: 20px;
   }
+
   #peserta_list li {
     font-size: 14px;
   }
+
   nav {
     font-size: 14px;
   }
+
   nav a {
     margin: 0 8px;
   }
