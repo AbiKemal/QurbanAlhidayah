@@ -1,39 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Master Tabungan Qurban</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style/style.css" />
   <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-
-  <!-- Header -->
-  <header class="main-header-wrapper">
-    <div class="container">
-      <img src="images/logo.png" alt="Logo Mushola" class="logo" />
-      <h1>Mushola Alhidayah</h1>
-    </div>
-  </header>
-
-  <!-- Navigation -->
-  <nav class="main-nav-wrapper">
-    <div class="container">
-      <ul class="main-menu">
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="master.html">Master</a></li>
-        <li><a href="view.html?nama=NamaPeserta">Kartu</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="container" style="padding-bottom: 80px; padding-top: 20px;">
+  <div class="container">
     <h2>Data Tabungan Qurban</h2>
 
     <div id="filterDiv">
-      <input type="text" id="filterNama" placeholder="Filter Nama Peserta..." onkeyup="filterData()">
+      <input type="text" id="filterNama" placeholder="Filter Nama Peserta..." onkeyup="filterData()" />
     </div>
 
     <div class="scrollable-table">
@@ -45,8 +24,6 @@
     <button class="button" onclick="exportToExcel()">Ekspor ke Excel</button>
   </div>
 
-  <!-- Scripts -->
-  <script src="script/config.js"></script>
   <script src="script/master.js"></script>
 </body>
 </html>
