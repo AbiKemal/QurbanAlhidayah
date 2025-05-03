@@ -18,22 +18,23 @@
   <div class="login-container">
     <h2>Login Admin</h2>
     <form id="loginForm">
-      <label for="username">ID:</label>
-      <input type="text" id="username" name="username" required />
-      <label for="password">Password:</label>
+      <label for="adminId">ID</label>
+      <input type="text" id="adminId" name="adminId" required />
+      
+      <label for="password">Password</label>
       <input type="password" id="password" name="password" required />
+      
       <button type="submit">Login</button>
+      <p id="errorMessage" class="error-message"></p>
     </form>
-    <div id="loginError" class="error-message"></div>
   </div>
 
-    <!-- NAVIGASI UTAMA -->
+  <!-- NAVIGASI UTAMA -->
   <div class="main-nav-wrapper">
     <nav class="main-nav container">
       <a href="index.html">Beranda</a>
       <a href="master.html">Master Data</a>
     </nav>
   </div>
-
 </body>
 </html>
