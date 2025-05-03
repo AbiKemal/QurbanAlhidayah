@@ -112,6 +112,24 @@ body {
 .main-nav a:hover {
   background-color: #d0f0d0;
 }
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-label {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
 
 /* Table and form styles */
 .scrollable-table {
