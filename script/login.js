@@ -28,7 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (found) {
-        sessionStorage.setItem("loggedIn", "true");
+        
+        localStorage.setItem("loggedIn", "true");  //sessionStorage.setItem("loggedIn", "true");
+
         window.location.href = "admin.html";
       } else {
         errorMessage.textContent = "ID atau Password salah!";
