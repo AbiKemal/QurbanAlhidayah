@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top" />
-    <title>Input Data Peserta</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AbiKemal/QurbanAlhidayah/style/input.css">
-  </head>
-  <body>
-    <h1>Input Data Peserta</h1>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beranda - Qurban</title>
+  <link rel="stylesheet" href="style/style.css" />
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="module" src="script/main.js"></script>
+</head>
+<body>
 
-    <form id="pesertaForm">
-      <label>Nama:</label>
-      <input type="text" name="nama" required><br>
+  <!-- HEADER -->
+  <div class="main-header-wrapper">
+    <header class="main-header container">
+      <img src="images/logo.png" alt="Logo Mushola" class="logo" />
+      <h1>Mushola Alhidayah</h1>
+    </header>
+  </div>
 
-      <label>Jumlah Hewan:</label>
-      <input type="number" name="jumlah" required><br>
+  <!-- KONTEN UTAMA -->
+  <div class="container">
+<iframe src="LINK_GOOGLE_FORM_ANDA" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe>
 
-      <label>Jenis Hewan:</label>
-      <select name="jenis">
-        <option>Sapi</option>
-        <option>Kambing</option>
-      </select><br>
+  </div>
 
-      <button type="submit">Kirim</button>
-    </form>
+  <!-- NAVIGASI UTAMA -->
+  <div class="main-nav-wrapper">
+    <nav class="main-nav container">
+      <a href="index.html">Beranda</a>
+      <a href="master.html">Master Data</a>
+    </nav>
+  </div>
 
-    <div id="message"></div>
-
-    <!-- Script eksternal -->
-    <script src="https://cdn.jsdelivr.net/gh/AbiKemal/QurbanAlhidayah/script/input.js"></script>
-  </body>
+</body>
 </html>
