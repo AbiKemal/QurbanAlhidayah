@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Beranda - Qurban</title>
+  <title>Halaman Admin - Qurban</title>
   <link rel="stylesheet" href="style/style.css" />
   <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="module" src="script/main.js"></script>
+  <script type="module" src="script/admin.js" defer></script>
 </head>
 <body>
-
   <!-- HEADER -->
   <div class="main-header-wrapper">
     <header class="main-header container">
@@ -20,9 +19,10 @@
 
   <!-- KONTEN UTAMA -->
   <div class="container">
-    <h2>Halaman Admin/h2>
-      <a href="index.html">input tabuingan</a>
-      <a href="master.html">input data peserta</a>
+    <h2>Halaman Admin</h2>
+    <a href="index.html">Input Tabungan</a> |
+    <a href="master.html">Input Data Peserta</a>
+    <p><button id="logoutBtn">Logout</button></p>
   </div>
 
   <!-- NAVIGASI UTAMA -->
@@ -32,6 +32,5 @@
       <a href="master.html">Master Data</a>
     </nav>
   </div>
-
 </body>
 </html>
