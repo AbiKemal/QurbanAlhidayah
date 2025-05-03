@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+    <title>Input Data Peserta</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AbiKemal/QurbanAlhidayah/style/input.css">
+  </head>
+  <body>
+    <h1>Input Data Peserta</h1>
+
+    <form id="pesertaForm">
+      <label>Nama:</label>
+      <input type="text" name="nama" required><br>
+
+      <label>Jumlah Hewan:</label>
+      <input type="number" name="jumlah" required><br>
+
+      <label>Jenis Hewan:</label>
+      <select name="jenis">
+        <option>Sapi</option>
+        <option>Kambing</option>
+      </select><br>
+
+      <button type="submit">Kirim</button>
+    </form>
+
+    <div id="message"></div>
+
+    <!-- Script eksternal -->
+    <script src="https://cdn.jsdelivr.net/gh/AbiKemal/QurbanAlhidayah/script/input.js"></script>
+  </body>
+</html>
