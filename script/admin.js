@@ -1,12 +1,17 @@
-// Proteksi halaman
-if (sessionStorage.getItem('isLoggedIn') !== 'true') {
-  window.location.href = 'login.html';
-}
+// script/admin.js
+document.addEventListener("DOMContentLoaded", () => {
+  const isLoggedIn = sessionStorage.getItem("loggedIn");
 
-// Logout
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-    sessionStorage.clear();
-    window.location.href = 'login.html';
+  if (isLoggedIn !== "true") {
+    alert("Silakan login terlebih dahulu.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // Fungsi logout
+  const logoutBtn = document.getElementById("logoutBtn");
+  logoutBtn.addEventListener("click", () => {
+    sessionStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
   });
 });
