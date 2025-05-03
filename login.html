@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="style/style.css" />
+  <script type="module" src="script/login.js" defer></script>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login Admin</h2>
+    <form id="loginForm">
+      <label for="adminId">ID</label>
+      <input type="text" id="adminId" name="adminId" required />
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+      
+      <button type="submit">Login</button>
+      <p id="errorMessage" class="error-message"></p>
+    </form>
+  </div>
+</body>
+</html>
