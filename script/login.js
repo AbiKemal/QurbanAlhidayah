@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (found) {
         
-        localStorage.setItem("loggedIn", "true");  //sessionStorage.setItem("loggedIn", "true");
+        localStorage.setItem("loggedIn", "true"); 
 
         window.location.href = "admin.html";
       } else {
