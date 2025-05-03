@@ -11,13 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password").value.trim();
 
     try {
-      const response = await fetch(config.sheets.Admin.id);
+      const response = await fetch(config.sheets.Admin.id, {
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+          'Cache-Control': 'no-cache'
+        }
+      });
+
       const text = await response.text();
-
       const rows = parseCSV(text);
-      console.log("Data login:", rows); // Debug opsional
 
-      const found = rows.find(([_, id, __, pass]) => id === adminId && pass === password);
+      const found = rows.some(row => {
+        const id = clean(row[1]);
+        const pass = clean(row[3]);
+        return id === adminId && pass === password;
+      });
 
       if (found) {
         sessionStorage.setItem("loggedIn", "true");
@@ -25,21 +33,21 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         errorMessage.textContent = "ID atau Password salah!";
       }
-    } catch (error) {
-      console.error("Gagal memuat data admin:", error);
-      errorMessage.textContent = "Terjadi kesalahan saat mengakses data.";
+
+    } catch (err) {
+      console.error("Login Error:", err);
+      errorMessage.textContent = "Terjadi kesalahan koneksi.";
     }
   });
 });
 
-function parseCSV(text) {
-  return text
-    .trim()
+function parseCSV(data) {
+  return data
     .split(/\r?\n/)
     .slice(1) // skip header
-    .map(row =>
-      row
-        .split(',')
-        .map(cell => cell.replace(/^\uFEFF/, '').trim()) // hapus BOM dan trim
-    );
+    .map(row => row.split(',').map(cell => clean(cell)));
+}
+
+function clean(text) {
+  return text.replace(/^\uFEFF/, '').trim().replace(/"/g, '');
 }
