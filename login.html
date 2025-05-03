@@ -18,15 +18,13 @@
   <div class="login-container">
     <h2>Login Admin</h2>
     <form id="loginForm">
-      <label for="adminId">ID</label>
-      <input type="text" id="adminId" name="adminId" required />
-      
-      <label for="password">Password</label>
+      <label for="username">ID:</label>
+      <input type="text" id="username" name="username" required />
+      <label for="password">Password:</label>
       <input type="password" id="password" name="password" required />
-      
       <button type="submit">Login</button>
-      <p id="errorMessage" class="error-message"></p>
     </form>
+    <div id="loginError" class="error-message"></div>
   </div>
 
     <!-- NAVIGASI UTAMA -->
