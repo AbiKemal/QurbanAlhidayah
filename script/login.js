@@ -1,36 +1,45 @@
-import config from './config.js';
+import config from "./config.js";
 
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
+  const errorMessage = document.getElementById("errorMessage");
 
-  const adminId = document.getElementById('adminId').value.trim();
-  const password = document.getElementById('password').value.trim();
-  const errorMessage = document.getElementById('errorMessage');
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await fetch(config.sheets.Admin.id);
-    const text = await response.text();
-    const rows = text
-                .trim()
-                .split(/\r?\n/)
-                .slice(1)
-                .map(row => row.split(',').map(cell => cell.trim()));
+    const adminId = document.getElementById("adminId").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    const found = rows.find(([_, id, __, pass]) => id === adminId && pass === password);
+    try {
+      const response = await fetch(config.sheets.Admin.id);
+      const text = await response.text();
 
+      const rows = parseCSV(text);
+      console.log("Data login:", rows); // Debug opsional
 
+      const found = rows.find(([_, id, __, pass]) => id === adminId && pass === password);
 
-    if (found) {
-      // Simpan status login
-      sessionStorage.setItem('isLoggedIn', 'true');
-      sessionStorage.setItem('adminId', adminId);
-      // Arahkan ke halaman admin
-      window.location.href = 'admin.html';
-    } else {
-      errorMessage.textContent = 'ID atau Password salah!';
+      if (found) {
+        sessionStorage.setItem("loggedIn", "true");
+        window.location.href = "admin.html";
+      } else {
+        errorMessage.textContent = "ID atau Password salah!";
+      }
+    } catch (error) {
+      console.error("Gagal memuat data admin:", error);
+      errorMessage.textContent = "Terjadi kesalahan saat mengakses data.";
     }
-  } catch (error) {
-    console.error('Gagal mengambil data admin:', error);
-    errorMessage.textContent = 'Terjadi kesalahan saat login.';
-  }
+  });
 });
+
+function parseCSV(text) {
+  return text
+    .trim()
+    .split(/\r?\n/)
+    .slice(1) // skip header
+    .map(row =>
+      row
+        .split(',')
+        .map(cell => cell.replace(/^\uFEFF/, '').trim()) // hapus BOM dan trim
+    );
+}
