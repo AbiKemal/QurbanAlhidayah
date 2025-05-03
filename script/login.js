@@ -10,9 +10,15 @@ document.getElementById('loginForm').addEventListener('submit', async function (
   try {
     const response = await fetch(config.sheets.Admin.id);
     const text = await response.text();
-    const rows = text.split('\n').slice(1).map(row => row.split(','));
+    const rows = text
+                .trim()
+                .split(/\r?\n/)
+                .slice(1)
+                .map(row => row.split(',').map(cell => cell.trim()));
 
     const found = rows.find(([_, id, __, pass]) => id === adminId && pass === password);
+
+
 
     if (found) {
       // Simpan status login
