@@ -35,8 +35,8 @@ body {
 .info div {
   flex: 1 1 45%;
 }
+
 .main-header-wrapper {
-  /* background-color: #006400; /* Dark green */
   padding: 10px 0;
 }
 
@@ -48,6 +48,7 @@ body {
   align-items: center;
   background-color: #006400; 
   color: white;
+  justify-content: space-between;
 }
 
 .main-header img {
@@ -59,6 +60,7 @@ body {
   font-size: 20px;
   font-weight: 600;
 }
+
 .table-container {
   overflow-x: auto;
   margin-bottom: 15px;
@@ -69,9 +71,9 @@ body {
   font-weight: bold;
   padding-top: 10px;
 }
+
 /* Navigation (footer menu) */
 .main-nav-wrapper {
-  /* background-color: #90EE90; /* Light green */
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -83,20 +85,28 @@ body {
   max-width: 1200px;
   margin: auto;
   display: flex;
-  bottom: 0;
   justify-content: space-around;
   align-items: center;
-  /* padding: 0 20px; */
-  padding: 0 0;
+  padding: 0;
   background-color: #90EE90;
 }
 
 .main-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
-  color: #004400;
+  color: white;
   font-weight: 600;
   padding: 8px 16px;
   border-radius: 6px;
+  font-size: 14px;
+}
+
+.main-nav a img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
 }
 
 .main-nav a:hover {
@@ -155,6 +165,7 @@ body {
 .info div {
   flex: 1 1 45%;
 }
+
 .login-container {
   max-width: 400px;
   margin: 80px auto;
@@ -199,11 +210,13 @@ body {
   margin-top: 10px;
   text-align: center;
 }
+
 .error-message {
   color: red;
   margin-top: 10px;
   text-align: center;
 }
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .container {
@@ -224,12 +237,12 @@ body {
     text-align: center;
   }
 
-.info {
+  .info {
     flex-direction: column;
     text-align: left;
   }
+
   .total-tabungan {
     text-align: left;
   }
-  
 }
