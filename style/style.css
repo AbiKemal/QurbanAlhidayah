@@ -48,7 +48,6 @@ body {
   align-items: center;
   background-color: #006400; 
   color: white;
-  justify-content: space-between;
 }
 
 .main-header img {
@@ -61,6 +60,7 @@ body {
   font-weight: 600;
 }
 
+/* Table and Form Container */
 .table-container {
   overflow-x: auto;
   margin-bottom: 15px;
@@ -92,32 +92,24 @@ body {
 }
 
 .main-nav a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-decoration: none;
-  color: white;
+  color: #004400;
   font-weight: 600;
   padding: 8px 16px;
   border-radius: 6px;
-  font-size: 14px;
-}
-
-.main-nav a img {
-  width: 32px;
-  height: 32px;
-  margin-bottom: 4px;
 }
 
 .main-nav a:hover {
   background-color: #d0f0d0;
 }
+
+/* Custom nav link with icons */
 .nav-link {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: white;
+  color: white !important;
 }
 
 .nav-icon {
@@ -128,8 +120,8 @@ body {
 .nav-label {
   font-size: 14px;
   margin-top: 5px;
+  color: white;
 }
-
 
 /* Table and form styles */
 .scrollable-table {
