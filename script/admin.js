@@ -1,6 +1,6 @@
 // script/admin.js
 document.addEventListener("DOMContentLoaded", () => {
-  const isLoggedIn = sessionStorage.getItem("loggedIn");
+  const isLoggedIn = localStorage.getItem("loggedIn");
 
   if (isLoggedIn !== "true") {
     alert("Silakan login terlebih dahulu.");
@@ -8,10 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Fungsi logout
   const logoutBtn = document.getElementById("logoutBtn");
   logoutBtn.addEventListener("click", () => {
-    sessionStorage.removeItem("loggedIn");
+    localStorage.removeItem("loggedIn");
     window.location.href = "login.html";
   });
 });
