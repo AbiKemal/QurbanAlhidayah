@@ -199,7 +199,11 @@ body {
   margin-top: 10px;
   text-align: center;
 }
-
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .container {
