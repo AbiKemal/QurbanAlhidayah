@@ -1,41 +1,30 @@
 import config from './config.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const loginForm = document.getElementById('loginForm');
-  const loginError = document.getElementById('loginError');
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    loginError.textContent = '';
+  const adminId = document.getElementById('adminId').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const errorMessage = document.getElementById('errorMessage');
 
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
+  try {
+    const response = await fetch(config.sheets.Admin.id);
+    const text = await response.text();
+    const rows = text.split('\n').slice(1).map(row => row.split(','));
 
-    try {
-      const adminSheet = config.sheets.Admin;
-      const csvUrl = config.getCsvUrl(adminSheet.gid);
-      const response = await fetch(csvUrl);
-      const csvText = await response.text();
+    const found = rows.find(([_, id, __, pass]) => id === adminId && pass === password);
 
-      const rows = csvText.trim().split('\n').slice(1); // Skip header
-      const credentials = rows.map(row => {
-        const cols = row.split(',');
-        return {
-          id: cols[1]?.trim(),
-          password: cols[3]?.trim()
-        };
-      });
-
-      const user = credentials.find(user => user.id === username && user.password === password);
-
-      if (user) {
-        window.location.href = 'admin.html';
-      } else {
-        loginError.textContent = 'ID atau Password salah.';
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      loginError.textContent = 'Terjadi kesalahan saat memproses login.';
+    if (found) {
+      // Simpan status login
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('adminId', adminId);
+      // Arahkan ke halaman admin
+      window.location.href = 'admin.html';
+    } else {
+      errorMessage.textContent = 'ID atau Password salah!';
     }
-  });
+  } catch (error) {
+    console.error('Gagal mengambil data admin:', error);
+    errorMessage.textContent = 'Terjadi kesalahan saat login.';
+  }
 });
